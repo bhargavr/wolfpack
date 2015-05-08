@@ -11,6 +11,8 @@
   community_reward VARCHAR(120) NULL, 
   predicted_avg VARCHAR(120) NULL,
   wr_d_id VARCHAR(120) NULL,
+  myPreference VARCHAR(120) NULL,
+  myMotivation VARCHAR(120) NULL,
   PRIMARY KEY (user_id),
   UNIQUE (userName));
   
@@ -21,6 +23,8 @@
   level VARCHAR(80) NOT NULL,
   teamLeader VARCHAR(120) NULL,
   teamMembers VARCHAR(120) NULL,
+  teamPreference VARCHAR(120) NULL,
+  teamMotivation VARCHAR(120) NULL,
   PRIMARY KEY (team_id),
   UNIQUE (teamName));
   
@@ -31,6 +35,8 @@
   raceType VARCHAR(80) NOT NULL,
   raceOwner VARCHAR(120) NULL,
   raceTeams VARCHAR(120) NULL,
+  racePreference VARCHAR(120) NULL,
+  raceMotivation VARCHAR(120) NULL,
   PRIMARY KEY (race_id),
   UNIQUE (raceName));
   

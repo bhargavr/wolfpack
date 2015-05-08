@@ -73,7 +73,7 @@ public class FetchActivitiesController {
     @RequestMapping("/fetchActivities")
     public Activities fetchActivities(@RequestParam(value="oauth_token", defaultValue="World") String oauth_token,
     		@RequestParam(value="oauth_verifier", defaultValue="World") String oauth_verifier,
-    		@RequestParam(value="dateStr", defaultValue="2014-06-01") String dateStr) {
+    		@RequestParam(value="dateStr", defaultValue="2015-05-06") String dateStr) {
     	
         FitbitAPIClientService<FitbitApiClientAgent> apiClientService = new FitbitAPIClientService<FitbitApiClientAgent>(
                 new FitbitApiClientAgent(apiBaseUrl, fitbitSiteBaseUrl, credentialsCache),

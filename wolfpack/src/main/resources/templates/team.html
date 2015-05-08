@@ -31,6 +31,29 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+  <script>
+    
+    function createTeam(){
+    	var team = {};
+    	team["teamName"] = $("#userName").val();
+    	team["levelSelect"] = $("#levelSelect").val();
+    	team["teamPreference"] = $("#teamPreference").val();
+    	team["teamMotivation"] = $("#teamMotivation").val();
+    	var teamString = JSON.stringify(team);
+    	
+    	$.ajax({
+            url:"/teamController",
+            type:"POST", 
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            data: teamString, //Stringified Json Object
+            cache: false,    //This will force requested pages not to be cached by the browser  
+            processData:false//To avoid making query String instead of JSON
+        });
+    }
+  
+  </script>
+
 </head>
 
 <body>
@@ -189,7 +212,11 @@
                                         <fieldset>
                                             <div class="form-group">
                                                 <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
+                                                    <option>Select Team</option>
+                                                    <option>Blazers</option>
+                                                    <option>Hammers</option>
+                                                    <option>Magnets</option>
+                                                    <option>Champs</option>
                                                 </select>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Join</button>
@@ -223,20 +250,30 @@
                                         <fieldset>
                                             <div class="form-group">
                                                 <label for="disabledSelect">Team Name</label>
-                                                <input class="form-control" id="Input" type="text" placeholder="Disabled input" />
+                                                <input class="form-control" id="teamName" type="text" placeholder="Team Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="disabledSelect">Level</label>
-                                                <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
+                                                <select id="levelSelect" class="form-control">
+                                                    <option>Beginner</option>
+                                                    <option>Intermediate</option>
+                                                    <option>Pro</option>
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="disabledSelect">Team Preferences</label>
+                                                <input class="form-control" id="teamPreference" type="text" placeholder="Team Preference" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="disabledSelect">Team Motivation</label>
+                                                <input class="form-control" id="teamMotivation" type="text" placeholder="Team Motivation" />
+                                            </div>                                                                                        
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" />Notifications
                                                 </label>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Create</button>
+                                            <button type="submit" class="btn btn-primary" onclick="createTeam()">Create Team</button>
                                         </fieldset>
                                     </form>
                                 </div>

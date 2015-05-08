@@ -31,6 +31,29 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+  <script>
+    
+    function createRace(){
+    	var race = {};
+    	team["raceName"] = $("#raceName").val();
+    	team["raceType"] = $("#raceType").val();
+    	team["racePreference"] = $("#racePreference").val();
+    	team["raceMotivation"] = $("#raceMotivation").val();
+    	var raceString = JSON.stringify(race);
+    	
+    	$.ajax({
+            url:"/raceController",
+            type:"POST", 
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            data: raceString, //Stringified Json Object
+            cache: false,    //This will force requested pages not to be cached by the browser  
+            processData:false//To avoid making query String instead of JSON
+        });
+    }
+  
+  </script>
+
 </head>
 
 <body>
@@ -169,12 +192,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h1>Select a Team</h1>
+                                    <h1>Select a Race</h1>
                                     <form role="form">
                                         <fieldset>
                                             <div class="form-group">
                                                 <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
+                                                    <option>Select Race</option>
+                                                    <option>Weekly Steps</option>
+                                                    <option>Weeklt Distance</option>
+                                                    <option>Marathon</option>
                                                 </select>
                                             </div>
                                             <button type="submit" class="btn btn-primary">Join</button>
@@ -198,30 +224,35 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Register Team
+                            Register Race
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h1>New Team</h1>
+                                    <h1>New Race</h1>
                                     <form role="form">
                                         <fieldset>
                                             <div class="form-group">
-                                                <label for="disabledSelect">Team Name</label>
-                                                <input class="form-control" id="Input" type="text" placeholder="Disabled input" />
+                                                <label for="disabledSelect">Race Name</label>
+                                                <input class="form-control" id="raceName" type="text" placeholder="Race Name" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="disabledSelect">Level</label>
-                                                <select id="disabledSelect" class="form-control">
-                                                    <option>Disabled select</option>
+                                                <select id="raceType" class="form-control">
+                                                    <option>Steps</option>
+                                                    <option>Distance</option>
+                                                    <option>Competition</option>
                                                 </select>
                                             </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" />Notifications
-                                                </label>
+                                            <div class="form-group">
+                                                <label for="disabledSelect">Race Preferences</label>
+                                                <input class="form-control" id="racePreference" type="text" placeholder="Race Preference" />
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Create</button>
+                                            <div class="form-group">
+                                                <label for="disabledSelect">Race Motivation</label>
+                                                <input class="form-control" id="raceMotivation" type="text" placeholder="Race Motivation" />
+                                            </div>                                              
+                                            <button type="submit" class="btn btn-primary" onclick="createRace()">Create Race</button>
                                         </fieldset>
                                     </form>
                                 </div>
